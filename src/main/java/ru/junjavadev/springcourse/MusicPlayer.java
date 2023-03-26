@@ -31,7 +31,13 @@ public class MusicPlayer {
 
     //IoC
     public MusicPlayer() {}
+    public void doMyInit() {
+        System.out.println("MusicPlayer init");
+    }
 
+    public void doMyDestroy() {
+        System.out.println("MusicPlayer destroy");
+    }
     public void playMusicList() {
         for (Music music : musicList) {
             System.out.println("Playing: " + music.getSong());

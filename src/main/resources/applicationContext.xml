@@ -24,7 +24,8 @@
                 <bean id="classicalMusic"
                       class="ru.junjavadev.springcourse.ClassicalMusic"
                       init-method="doMyInit"
-                      destroy-method="doMyDestroy">
+                      destroy-method="doMyDestroy"
+                      factory-method="getClassicalMusic">
                 </bean>
                 <bean id="popMusic"
                       class="ru.junjavadev.springcourse.PopMusic"
@@ -36,7 +37,11 @@
     </bean>
 
     <bean id="musicPlayer"
-          class="ru.junjavadev.springcourse.MusicPlayer">
+          class="ru.junjavadev.springcourse.MusicPlayer"
+          scope="prototype"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy"
+    >
         <property name="musicList" ref="musicList"/>
         <property name="name" value="${musicPlayer.name}"/>
         <property name="volume" value="${musicPlayer.volume}"/>
