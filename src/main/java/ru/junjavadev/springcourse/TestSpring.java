@@ -2,6 +2,8 @@ package ru.junjavadev.springcourse;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.List;
+
 public class TestSpring {
     public static void main(String[ ] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
@@ -10,12 +12,12 @@ public class TestSpring {
 
         // Music music = context.getBean("musicBean", Music.class);
         // MusicPlayer player = new MusicPlayer(music);
-        MusicPlayer musicPlayer1 = context.getBean("musicPlayer", MusicPlayer.class);
-        MusicPlayer musicPlayer2 = context.getBean("musicPlayer", MusicPlayer.class);
-        MusicPlayer musicPlayer3 = context.getBean("musicPlayer", MusicPlayer.class);
-        musicPlayer1.playMusicList();
-        musicPlayer2.playMusicList();
-        musicPlayer3.playMusicList();
+        Music classicalMusic = context.getBean("classicalMusic", Music.class);
+        Music popMusic = context.getBean("popMusic", Music.class);
+        Music rockMusic = context.getBean("rockMusic", Music.class);
+        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        musicPlayer.setMusicList(List.of(classicalMusic, popMusic, rockMusic));
+        musicPlayer.playMusicList();
         context.close();
     }
 }

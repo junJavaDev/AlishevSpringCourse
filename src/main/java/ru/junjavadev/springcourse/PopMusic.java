@@ -1,5 +1,8 @@
 package ru.junjavadev.springcourse;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PopMusic implements Music {
     public void doMyInit() {
         System.out.println("Pop init");
