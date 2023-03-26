@@ -1,24 +1,21 @@
 package ru.junjavadev.springcourse;
 
 import org.springframework.stereotype.Component;
+
+import java.util.random.RandomGenerator;
+
 @Component
 public class ClassicalMusic implements Music {
-    ClassicalMusic (){}
 
-    public static ClassicalMusic getClassicalMusic() {
-        return new ClassicalMusic();
-    }
-
-    public void doMyInit() {
-        System.out.println("Classical init");
-    }
-
-    public void doMyDestroy() {
-        System.out.println("Classical destroy");
-    }
+    private final String[] songs = {
+            "Вивальди – Времена Года ",
+            "Бетховен – Ода К Радости",
+            "Бах – Sonata #4 In C Minor (Adagio)",
+            "Боккерини - Менуэт"
+    };
 
     @Override
-    public String getSong() {
-        return "Hungarian Rhapsody";
+    public String[] getSongs() {
+        return songs;
     }
 }

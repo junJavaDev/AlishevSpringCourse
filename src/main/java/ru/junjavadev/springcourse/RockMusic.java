@@ -2,18 +2,19 @@ package ru.junjavadev.springcourse;
 
 import org.springframework.stereotype.Component;
 
+import java.util.random.RandomGenerator;
+
 @Component
 public class RockMusic implements Music{
+    private final String[] songs = {
+            "Сплин - Выхода нет",
+            "Кино - В наших глазах",
+            "7Б - Молодые ветра",
+            "Lumen - Гореть"
+    };
 
-    public void doMyInit() {
-        System.out.println("Rock init");
+    public String[] getSongs() {
+        return songs;
     }
 
-    public void doMyDestroy() {
-        System.out.println("Rock destroy");
-    }
-    @Override
-    public String getSong() {
-        return "Wind cries Mary";
-    }
 }
