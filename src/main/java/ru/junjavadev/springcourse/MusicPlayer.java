@@ -5,43 +5,39 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
 
-@Component
 public class MusicPlayer {
+
     @Value("${musicPlayer.name}")
     private String name;
     @Value("${musicPlayer.volume}")
 
-    private int volume;
-
     public String getName() {
         return name;
     }
-
-    public int getVolume() {
-        return volume;
+    @PostConstruct
+    public void doMyInit() {
+        System.out.println("MusicPlayer init");
     }
 
-    private Music classicalMusic;
-    private Music rockMusic;
-
-    @Autowired
-    public MusicPlayer(@Qualifier("rockMusic") Music rockMusic,
-                       @Qualifier("classicalMusic") Music classicalMusic) {
-        this.rockMusic = rockMusic;
-        this.classicalMusic = classicalMusic;
+    @PreDestroy
+    public void doMyDestroy() {
+        System.out.println("MusicPlayer destroyed");
     }
 
-    public String playMusic(Genre genre) {
-        String[] songs =
-                switch (genre) {
-                    case ROCK -> rockMusic.getSongs();
-                    case CLASSICAL -> classicalMusic.getSongs();
-                };
+    private List<Music> musicList;
+    public MusicPlayer(List<Music> musicList) {
+        this.musicList = musicList;
+    }
+
+    public String playMusic() {
+        String[] songs = musicList.get(ThreadLocalRandom.current().nextInt(musicList.size())).getSongs();
         return songs[ThreadLocalRandom.current().nextInt(songs.length)];
     }
 }

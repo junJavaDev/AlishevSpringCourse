@@ -6,17 +6,16 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Component
 public class ClassicalMusic implements Music {
 
     @PostConstruct
     public void doMyInit() {
-        System.out.println("Doing my initialization");
+        System.out.println("Classical init");
     }
 
     @PreDestroy
     public void doMyDestroy() {
-        System.out.println("DESTROYED");
+        System.out.println("Classical destroyed");
     }
 
     private final String[] songs = {
