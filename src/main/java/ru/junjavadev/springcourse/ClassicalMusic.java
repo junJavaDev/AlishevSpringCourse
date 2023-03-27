@@ -1,11 +1,23 @@
 package ru.junjavadev.springcourse;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.random.RandomGenerator;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 @Component
 public class ClassicalMusic implements Music {
+
+    @PostConstruct
+    public void doMyInit() {
+        System.out.println("Doing my initialization");
+    }
+
+    @PreDestroy
+    public void doMyDestroy() {
+        System.out.println("DESTROYED");
+    }
 
     private final String[] songs = {
             "Вивальди – Времена Года ",
